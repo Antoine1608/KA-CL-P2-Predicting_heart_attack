@@ -11,12 +11,14 @@
 
 ### On va mettre en place un algorithme de classification binaire (risque d'attaque : 1, pas de risque : 0)
 
-### On va séparer la colonne 'Blood pressure' en 'Systolic' et 'Diastolic'
+### On va utiliser Pycaret pour entraîner le modèle, enregistrer les résultats avec MLFlow et déployer le modèle avec FastAPI.
+
+### D'abord on va séparer la colonne 'Blood pressure' en 'Systolic' et 'Diastolic'.
 
 ### Aucun autre préprocessing n'est nécessaire. Pycaret gère automatiquement le hot encoding, les valeurs manquantes, les outliers, les classes déséquilibrées...
-### Pycaret va entraîner par cross validation plusieurs modèles.  
-### Nous prenons comme indicateur de performance le rappel (recall) qui est le ratio du nombre de prédictions de risque d'attaque correct sur le nombre de risque d'attaque réel. 
+### Pycaret va entraîner par stratified cross validation plusieurs modèles.  
+### Nous prenons comme indicateur de performance le rappel (recall) qui est le ratio du nombre de prédictions de risque d'attaque correct sur le nombre de risques d'attaque réel. 
 
 ### Le meilleur modèle est le KNeighborsClassifier avec un recall de 1 sur les données de test mais la classe 1 a aspiré toute les prédictions ! On peut certainement faire mieux en blendant les 5 meilleurs modèles. 
 
-### Ce dernier modèle obtient une accuracy parfaite de 1 sur l'ensemble des données de test !
+### Après avoir blendé les 5 meilleurs modèle, on obtient une accuracy parfaite de 1 sur l'ensemble des données de test !
